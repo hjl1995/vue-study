@@ -2,6 +2,8 @@
    <div class="app">
       <div class="outNode">
         <div class="topNode">
+          <div class="left" @click="leftCl"></div>
+          <div class="right" @click="rightCl"> </div>
           <div class="moveDiv">
             <ul :style='{width:img.length*800+"px",left:index*-800+"px"}'>
               <li v-for="i in img">
@@ -37,6 +39,18 @@ export default {
   methods: {
     Lick (a) {
       this.index = a
+    },
+    leftCl(){
+      this.index--;
+      if (this.index==-1){
+        this.index=this.img.length-1;
+      }
+    },
+    rightCl(){
+      this.index++;
+      if (this.index == this.img.length) {
+        this.index = 0
+      }
     }
   }
 }
@@ -66,7 +80,7 @@ export default {
   width: 800px;
   float: left;
   height: 100%;
-  transition:
+  transition: .3s;
 }
 .topNode .moveDiv>ul>li img{
   width: 100%;
@@ -81,13 +95,38 @@ export default {
     width: 100%;
     float: left;
     height: 440px;
+    position: relative;
+  }
+  .topNode .left{
+    width: 20px;
+    height: 20px;
+    border-radius: 50px;
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    z-index: 5;
+    cursor: pointer;
+    background: rgb(255,255,255,0.7);
+
+  }
+  .topNode .right{
+    width: 20px;
+    height: 20px;
+    border-radius: 50px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    z-index: 5;
+    cursor: pointer;
+    background: rgb(255,255,255,0.7);
+
   }
   .topNode .textDiv{
     width: 100%;
     height: 40px;
     float: left;
     background: blue;
-    line-heighs: 40px;
+    line-height: 40px;
   }
   .text{
     font-size: 20px;
